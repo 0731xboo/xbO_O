@@ -22,11 +22,11 @@ sticky: 1 #用于设置在首页展示的 精选文章，值越大展示越靠�
 top: 1 #用于设置在首页置顶展示的文章，从 1 开始，值越小越靠前
 recommend: 1 #可用于配置左侧推荐列表数据表现，默认只展示同级目录下的文章
 # publish: false #用于控制文章是否发布  等价于hidden: true recommend: false
-buttonAfterArticle:  #用于单独控制某篇文章底部按钮，点击按钮会在按钮下方渲染一个自定义的html内容，例如可以用来做赞赏按钮，内置了 wechatPay 和 aliPay 两个图标，也可自定义图标(svg)。
-  openTitle: 投币
-  closeTitle: 下次一定
-  content: '<img src="https://img.cdn.sugarat.top/mdImg/MTY0Nzc1NTYyOTE5Mw==647755629193">'
-  icon: aliPay
+# buttonAfterArticle:  #用于单独控制某篇文章底部按钮，点击按钮会在按钮下方渲染一个自定义的html内容，例如可以用来做赞赏按钮，内置了 wechatPay 和 aliPay 两个图标，也可自定义图标(svg)。
+  # openTitle: 投币
+  # closeTitle: 下次一定
+  # content: '<img src="https://img.cdn.sugarat.top/mdImg/MTY0Nzc1NTYyOTE5Mw==647755629193">'
+  # icon: aliPay
   # size: small
   # expand: true
 
