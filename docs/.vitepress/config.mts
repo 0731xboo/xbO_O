@@ -15,7 +15,7 @@ import { blogTheme } from './blog-theme'
 export default defineConfig({
   // 继承博客主题(@sugarat/theme)
   extends: blogTheme,
-  // base,
+  base:'/xbO_O/',
   lang: 'zh-cn',
   title: 'xbO_O',
   description: 'vitepress简约博客',
