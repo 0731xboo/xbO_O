@@ -71,6 +71,60 @@ github中打开【设置】-【SSH与GPG公钥】检查github ssh认证密钥是
 [github ssh配置文档](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 
+## 本地存在多个密钥时，如何根据目标平台自动选择用于认证的密钥？
+当本地存在多个密钥，如果不设置认证规则，本机将随机选择一个密钥用于认证，可能造成认证失败。
+
+因此，在如下场景中，需要自行定义认证密钥的路径：
+
+本地存在多个密钥对应云效的不同账号。
+
+本地存在多个密钥对应不同的代码平台（GitLab，GitHub，云效等）。
+
+### 定义认证密钥路径规则
+
+打开本地终端，按如下格式编辑~/.ssh/config文件，如 Windows 平台请使用WSL（Windows10或以上）或 Git Bash：
+
+``` bash
+
+# Codeup 示例用户1
+HostName codeup.aliyun.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_ed25519
+  
+# Codeup 示例用户2，设置别名 codeup-user-2
+Host codeup-user-2
+HostName codeup.aliyun.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/codeup_user_2_ed25519
+
+# GitLab 平台
+HostName gitlab.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/gitlab_ed25519
+
+```
+
+按照上述配置，使用SSH协议访问时，SSH 客户端会使用文件指定的密钥进行认证，实现访问不同平台或同一平台的不同账号使用本地不同的 SSH 密钥进行认证。
+
+- 访问 Codeup ，由于 HostName 一致，使用别名进行区分使用不同的密钥。
+- 访问 GitLab，根据 HostName 进行区分使用不同的密钥。
+
+```bash
+# 访问 Codeup，将使用 ~/.ssh/id_ed25519.pub 密钥
+git clone gi*@codeup.aliyun.com:example/repo.com
+
+# 以 codeup-user-2 别名访问 Codeup 时，将使用 ~/.ssh/codeup_user_2_ed25519 密钥 
+git clone git@codeup-user-2:example/repo.com
+
+# 访问 GitLab 平台，将使用 ~/.ssh/gitlab_ed25519 密钥
+git clone gi*@gitlab.com:example/repo.com
+```
+
+
+
+
+
+
 
 
 
