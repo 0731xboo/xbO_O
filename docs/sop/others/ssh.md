@@ -120,6 +120,71 @@ git clone git@codeup-user-2:example/repo.com
 git clone gi*@gitlab.com:example/repo.com
 ```
 
+## SSH 配置规则
+
+SSH 配置文件（通常是 `.ssh/config`）用于定义连接到不同主机时的设置。以下是一些常见的配置规则和选项：
+
+### 基本格式
+
+```plaintext
+Host <alias>
+    HostName <hostname>
+    User <username>
+    Port <port>
+    IdentityFile <path_to_private_key>
+    PreferredAuthentications <authentication_methods>
+```
+
+### 详细说明
+
+1. **Host**: 
+   - 用于定义一个连接的别名。
+   - 可以使用通配符，例如 `Host *.example.com`。
+
+2. **HostName**:
+   - 实际的主机名或 IP 地址。
+
+3. **User**:
+   - 登录时使用的用户名。
+
+4. **Port**:
+   - SSH 服务的端口号，默认是 `22`。
+
+5. **IdentityFile**:
+   - 指定用于认证的私钥文件路径。
+
+6. **PreferredAuthentications**:
+   - 指定首选的认证方法，例如 `publickey`。
+
+### 常见配置示例
+
+```plaintext
+Host github
+    HostName ssh.github.com
+    User git
+    Port 443
+    IdentityFile ~/.ssh/id_rsa
+    PreferredAuthentications publickey
+
+Host aliyun
+    HostName codeup.aliyun.com
+    User your_username
+    IdentityFile ~/.ssh/id_ed25519
+```
+
+### 其他常用选项
+
+- **ProxyCommand**: 用于通过代理连接。
+- **ServerAliveInterval**: 设置保持连接的时间间隔。
+- **StrictHostKeyChecking**: 控制是否自动接受新主机的公钥。
+
+### 注意事项
+
+- 确保文件权限设置正确，通常 `.ssh/config` 的权限应为 `600`。
+- 使用注释（`#`）来记录配置的目的或说明。
+
+这些规则可以帮助你更好地管理 SSH 连接。如果有任何具体问题，欢迎随时询问！
+
 
 
 
